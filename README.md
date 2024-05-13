@@ -4,3 +4,5 @@
 
 ## Vue 3 + TypeScript + Vite + Echarts
 
+在线预览：
+https://vue3_echarts_geo_map-rfka0hh6-kikidoulovemeruriding.4everland.app/
