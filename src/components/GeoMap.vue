@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, withDefaults, watch } from 'vue';
+import { onMounted, onUnmounted, ref, withDefaults, watch } from 'vue';
 import * as echarts from 'echarts';
 /**
  * 引入地图JSON数据
@@ -22,6 +22,7 @@ import * as echarts from 'echarts';
  * echarts.registerMap('shandong', ShandongGeoJson as any)即可
  */
 import ShandongGeoJson from '../assets/json/shandong.json?raw';
+
 
 // 父级传值来配置地图
 interface Props {
@@ -204,6 +205,7 @@ const generateMap = (value?: echarts.SeriesOption) => {
     //   {
     //     type: 'map',
     //     map: 'shandong',
+    //     geoIndex: 0,
     //     itemStyle: {
     //       borderWidth: 1,
     //       areaColor: document.getElementById('sticker'),
@@ -254,6 +256,10 @@ onMounted(() => {
   //   });
   // })
 });
+onUnmounted(() => {
+  // 释放echarts实例
+  chartInstance.value?.dispose();
+})
 </script>
 
 <style lang="less" scoped>
